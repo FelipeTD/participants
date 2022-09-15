@@ -8,10 +8,9 @@ import java.util.Optional;
 public interface ParticipantService {
 
     List<Participant> findAll();
-
     Optional<Participant> findById(Long id);
-
     Participant save(Participant participant);
-    Participant delete(Participant participant);
+    void deleteById(Long id);
+
 
 }

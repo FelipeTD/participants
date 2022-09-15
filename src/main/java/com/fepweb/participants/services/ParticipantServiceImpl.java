@@ -35,12 +35,11 @@ public class ParticipantServiceImpl implements ParticipantService {
     }
 
     @Override
-    public Participant delete(Participant participant) {
+    public void deleteById(Long id) {
         try {
-            repository.delete(participant);
-            return participant;
+            repository.deleteById(id);
         } catch (Exception error) {
-            return null;
+            System.err.println("Error to delete participant");
         }
     }
 

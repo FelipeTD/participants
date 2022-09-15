@@ -68,17 +68,15 @@ public class ParticipantsController {
 
     }
 
-    @DeleteMapping
-    public ResponseEntity<Participant> deleteParticipant(
-            @RequestBody Participant participant) {
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
 
-        Participant response = service.delete(participant);
-
-        if (Objects.isNull(response)) {
-            return ResponseEntity.badRequest().build();
-        }
-
-        return ResponseEntity.ok(response);
+        return service.findById(id)
+                .map(recordFound -> {
+                    service.deleteById(id);
+                    return ResponseEntity.noContent().<Void>build();
+                })
+                .orElse(ResponseEntity.notFound().build());
 
     }
 
