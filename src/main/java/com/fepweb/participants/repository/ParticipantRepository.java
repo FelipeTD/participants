@@ -1,9 +1,9 @@
 package com.fepweb.participants.repository;
 
-import com.fepweb.participants.entity.ParticipantEntity;
+import com.fepweb.participants.model.Participant;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ParticipantRepository extends JpaRepository<ParticipantEntity, Long> {
+public interface ParticipantRepository extends JpaRepository<Participant, Long> {
 }

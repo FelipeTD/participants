@@ -1,6 +1,6 @@
 package com.fepweb.participants.services;
 
-import com.fepweb.participants.entity.ParticipantEntity;
+import com.fepweb.participants.model.Participant;
 import com.fepweb.participants.repository.ParticipantRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -14,21 +14,21 @@ public class ParticipantServiceImpl implements ParticipantService {
     private final ParticipantRepository repository;
 
     @Override
-    public ParticipantEntity save(ParticipantEntity participant) {
+    public Participant save(Participant participant) {
         try {
-            ParticipantEntity response = repository.save(participant);
+            Participant response = repository.save(participant);
             return response;
         } catch (IllegalArgumentException error) {
             return null;
         }
     }
     @Override
-    public List<ParticipantEntity> findAll() {
+    public List<Participant> findAll() {
         return repository.findAll();
     }
 
     @Override
-    public ParticipantEntity delete(ParticipantEntity participant) {
+    public Participant delete(Participant participant) {
         try {
             repository.delete(participant);
             return participant;
