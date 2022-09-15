@@ -29,7 +29,7 @@ public class ParticipantsController {
         Optional<Participant> response = service.findById(id);
 
         return response
-                .map(record -> ResponseEntity.ok().body(record))
+                .map(recordFound -> ResponseEntity.ok().body(recordFound))
                 .orElse(ResponseEntity.notFound().build());
     }
 
@@ -44,6 +44,27 @@ public class ParticipantsController {
         }
 
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
+
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Participant> update(
+            @PathVariable("id") Long id, @RequestBody Participant participant) {
+
+        Optional<Participant> response = service.findById(id);
+
+        return response
+                .map(recordFound -> {
+                    recordFound.setExternalCode(participant.getExternalCode());
+                    recordFound.setName(participant.getName());
+                    recordFound.setCpf(participant.getCpf());
+                    recordFound.setPhone(participant.getPhone());
+                    recordFound.setAssign(participant.getAssign());
+                    recordFound.setStatus(participant.getStatus());
+                    Participant updated = service.save(recordFound);
+                    return ResponseEntity.ok().body(recordFound);
+                })
+                .orElse(ResponseEntity.notFound().build());
 
     }
 
