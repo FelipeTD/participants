@@ -1,5 +1,6 @@
 package com.fepweb.participants.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -20,6 +21,8 @@ public class Participant {
     private Long code;
 
     @Column(name="external_code", nullable = false, length = 100)
+    @JsonProperty("externalCode")
+    //@JsonIgnore
     private Long externalCode;
 
     @Column(name="name", nullable = false, length = 100)
