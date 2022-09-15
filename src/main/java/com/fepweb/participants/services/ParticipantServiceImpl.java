@@ -6,12 +6,23 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Optional;
 
 @Component
 @RequiredArgsConstructor
 public class ParticipantServiceImpl implements ParticipantService {
 
     private final ParticipantRepository repository;
+
+    @Override
+    public List<Participant> findAll() {
+        return repository.findAll();
+    }
+
+    @Override
+    public Optional<Participant> findById(Long id) {
+        return repository.findById(id);
+    }
 
     @Override
     public Participant save(Participant participant) {
@@ -21,10 +32,6 @@ public class ParticipantServiceImpl implements ParticipantService {
         } catch (IllegalArgumentException error) {
             return null;
         }
-    }
-    @Override
-    public List<Participant> findAll() {
-        return repository.findAll();
     }
 
     @Override
